@@ -1,0 +1,31 @@
+%function update complex_data spredsheet with actual coronavirus data
+
+function complexData
+opts = detectImportOptions('covid_data.xlsx');
+opts.SelectedVariableNames = [5 6 7 9 10]; 
+[cases,deaths, countries, countryCode, pop] = readvars('covid_data.xlsx',opts);
+
+country_and_code_table = [string(countries(1)) string(countryCode(1))];
+data_table = [cases(1) deaths(1) pop(1)];
+
+country = 1;
+for i=2:length(cases)
+    if(countryCode(i-1) == string(countryCode(i)))
+       data_table(country, 1) = data_table(country, 1)+ cases(i); 
+       data_table(country, 2) = data_table(country, 2)+ deaths(i); 
+    else
+%         pop(i);
+        if(pop(i)>0)
+            data_table =[data_table; [cases(i) deaths(i) pop(i)]]; %skip countries without info about population
+            country_and_code_table = [country_and_code_table; [string(countries(i)) string(countryCode(i))]];
+            country = country +1;
+       end
+    end
+end
+
+%write complexdata to spreadsheet
+complex_data_filename = 'complex_data.xlsx';
+writematrix(data_table,complex_data_filename,'Sheet',1,'Range','A1');
+writematrix(country_and_code_table,complex_data_filename,'Sheet',1,'Range','D1');
+avg_temp = xlsread('complex_data.xlsx',1, 'F1:F205');
+end

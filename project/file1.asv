@@ -1,0 +1,18 @@
+clear; clc;
+
+opts = detectImportOptions('complex_data.xlsx');
+opts.SelectedVariableNames = [1 4 5]; 
+[cases, country_nr, country] = readvars('complex_data.xlsx',opts);
+
+countries = [string(country) country_nr];
+data = [cases country_nr];
+data = sortrows(data, 'descend');
+
+%tables of 10 countires with top cases
+tmp_d = 
+
+
+% figure
+% bar(cases)
+% set(gca, 'xticklabel', countries)
+% ylabel("cases")
