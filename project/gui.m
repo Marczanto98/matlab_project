@@ -22,7 +22,7 @@ function varargout = gui(varargin)
 
 % Edit the above text to modify the response to help gui
 
-% Last Modified by GUIDE v2.5 02-Jun-2020 20:08:33
+% Last Modified by GUIDE v2.5 03-Jun-2020 13:18:51
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -88,6 +88,11 @@ function buttonUpdateData_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 update_data
 complexData
+opts = detectImportOptions('covid_data.xlsx');
+opts.SelectedVariableNames = [2 3 4]; 
+[day, month, year] = readvars('covid_data.xlsx',opts);
+str = sprintf('%d-%d-%d', day(1), month(1), year(1));
+set(handles.date_txt, 'String', str);
 
 
 % --- Executes on selection change in statsMenu.
@@ -218,4 +223,3 @@ function heatmapButton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 heatmap;
-

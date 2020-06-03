@@ -3,6 +3,11 @@ opts = detectImportOptions('complex_data.xlsx');
 opts.SelectedVariableNames = [1 4 5]; 
 [cases, country_nr, country] = readvars('complex_data.xlsx',opts);
 
+for i=1:length(country)
+    tmp = strrep(country(i),'_',' ');
+    country(i)=tmp;
+end
+
 countries = [string(country) country_nr];
 data = [cases country_nr];
 data = sortrows(data, 'descend');

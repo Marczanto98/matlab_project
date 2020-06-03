@@ -8,7 +8,7 @@ x = [death_rate age];
 %[R,Pvalue,H] = 
 % fig = corrplot(x, 'type', 'Kendall','rows', 'pairwise', 'testR','on')
 plot(death_rate, age, 'b.')
-ylabel(xname)
-xlabel(yname)
+ylabel(yname)
+xlabel(xname)
 
 end
