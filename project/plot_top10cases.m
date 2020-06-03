@@ -15,10 +15,8 @@ for i=2:10
     tmp_c = [tmp_c countries(data(i,2))];
 end
 
-figure
+
 bar(tmp_d)
 set(gca, 'xticklabel', tmp_c)
 ylabel("cases")
 xlabel("country")
-
-end
