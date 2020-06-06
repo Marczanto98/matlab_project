@@ -12,7 +12,6 @@ countries = [string(country) country_nr];
 data = [deaths country_nr];
 data = sortrows(data, 'descend');
 
-%tables of 10 countires with top deaths
 tmp_d = data(1,1);
 tmp_c = countries(data(1,2), 1);
 for i=2:10
